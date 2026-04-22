@@ -254,9 +254,16 @@
 
     .nav-inner {
       height: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+
+    .nav-right {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
+      gap: 12px;
     }
 
     /* Logo */
@@ -306,6 +313,7 @@
     .nav-links {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       list-style: none;
     }
@@ -1161,6 +1169,8 @@
       .container { padding: 0 20px; }
 
       .nav-links { display: none; }
+      .nav-inner { grid-template-columns: 1fr auto; }
+      .nav-right .nav-cta { display: none; }
       .hamburger { display: flex; }
 
       .hero-inner {
@@ -1225,80 +1235,30 @@
       margin: 0 auto 72px;
     }
 
-    /* Timeline container */
+    /* Timeline container — 2-column grid */
     .timeline {
-      position: relative;
-      max-width: 980px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
-    /* Centre spine */
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0; bottom: 0;
-      width: 2px;
-      transform: translateX(-50%);
-      background: linear-gradient(180deg,
-        transparent 0%,
-        var(--accent2) 8%,
-        rgba(0,200,255,0.3) 50%,
-        var(--accent) 92%,
-        transparent 100%);
+    .timeline::before { display: none; }
+
+    /* Each item */
+    .tl-item,
+    .tl-item:nth-child(odd),
+    .tl-item:nth-child(even) {
+      display: block;
+      margin-bottom: 0;
     }
 
-    /* Each item wrapper */
-    .tl-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0;
-      margin-bottom: 48px;
-      position: relative;
-    }
+    .tl-dot-wrap,
+    .tl-spacer { display: none; }
 
-    /* Alternate left / right */
-    .tl-item:nth-child(odd)  { flex-direction: row; }
-    .tl-item:nth-child(even) { flex-direction: row-reverse; }
-
-    /* Card side — 50% minus the centre dot area */
     .tl-card-wrap {
-      width: calc(50% - 36px);
-      flex-shrink: 0;
-    }
-
-    .tl-item:nth-child(odd)  .tl-card-wrap { padding-right: 0; }
-    .tl-item:nth-child(even) .tl-card-wrap { padding-left: 0; }
-
-    /* Spacer for the other side */
-    .tl-spacer {
-      width: calc(50% - 36px);
-      flex-shrink: 0;
-    }
-
-    /* Centre dot */
-    .tl-dot-wrap {
-      width: 72px;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      padding-top: 22px;
-    }
-
-    .tl-dot {
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 0 4px rgba(0,200,255,0.12), 0 0 16px rgba(0,200,255,0.3);
-      position: relative;
-      z-index: 1;
-      transition: box-shadow 0.3s;
-      flex-shrink: 0;
-    }
-
-    .tl-item:hover .tl-dot {
-      box-shadow: 0 0 0 6px rgba(0,200,255,0.2), 0 0 24px rgba(0,200,255,0.5);
+      width: 100%;
     }
 
     /* The card itself */
@@ -1486,27 +1446,9 @@
        EXPERIENCE MOBILE
     ============================================================ */
     @media (max-width: 768px) {
-      .timeline::before { left: 20px; }
-
-      .tl-item,
-      .tl-item:nth-child(even) { flex-direction: row !important; }
-
-      .tl-spacer { display: none; }
-
-      .tl-card-wrap {
-        width: 100%;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+      .timeline {
+        grid-template-columns: 1fr;
       }
-
-      .tl-dot-wrap {
-        width: 40px;
-        padding-top: 18px;
-        flex-shrink: 0;
-      }
-
-      .tl-item:nth-child(odd) .tl-card::after,
-      .tl-item:nth-child(even) .tl-card::after { display: none; }
     }
 
     /* ============================================================
@@ -2555,13 +2497,15 @@
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact" class="nav-cta">Book Consultation</a></li>
           </ul>
 
-          <!-- Hamburger (mobile) -->
-          <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-          </button>
+          <!-- Right side: CTA + Hamburger -->
+          <div class="nav-right">
+            <a href="#contact" class="nav-cta">Book Consultation</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
 
         </div>
       </div>
