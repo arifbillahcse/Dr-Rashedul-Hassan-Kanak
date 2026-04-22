@@ -1,0 +1,3929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Rashedul Hassan Kanak — Physician & Medical Educator</title>
+  <meta name="description" content="Dr. Rashedul Hassan Kanak — Associate Professor of Medicine, FCPS, Internal Medicine Specialist, Dhaka Bangladesh." />
+
+  <!-- Google Fonts: Syne + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — CSS VARIABLES
+    ============================================================ */
+    :root {
+      --bg:        #050d1a;
+      --surface:   #0a1628;
+      --surface2:  #0d1e35;
+      --accent:    #00c8ff;
+      --accent2:   #0066ff;
+      --accent-glow: rgba(0, 200, 255, 0.18);
+      --text:      #e8f4fd;
+      --muted:     #6b8fa8;
+      --border:    rgba(0, 200, 255, 0.13);
+      --glass-bg:  rgba(255, 255, 255, 0.04);
+      --glass-blur: blur(22px);
+      --radius:    16px;
+      --radius-lg: 24px;
+      --shadow:    0 8px 40px rgba(0, 0, 0, 0.45);
+      --shadow-accent: 0 0 40px rgba(0, 200, 255, 0.12);
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --nav-h:     72px;
+      --transition: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--surface);
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; font-family: var(--font-body); border: none; outline: none; }
+
+    /* ============================================================
+       LOADING SCREEN
+    ============================================================ */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-icon {
+      width: 64px;
+      height: 64px;
+      position: relative;
+    }
+
+    /* Medical cross SVG ring */
+    .loader-ring {
+      width: 64px;
+      height: 64px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      top: 0; left: 0;
+    }
+
+    .loader-cross {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--accent);
+      font-size: 24px;
+      font-weight: 700;
+      animation: pulse-icon 1.2s ease-in-out infinite;
+    }
+
+    .loader-text {
+      font-family: var(--font-head);
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: pulse-icon 1.2s ease-in-out infinite;
+    }
+
+    .loader-bar {
+      width: 160px;
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 2px;
+      animation: load-fill 1.4s ease forwards;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse-icon {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    @keyframes load-fill {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    /* ============================================================
+       BACKGROUND — FLOATING ORB BLOBS
+    ============================================================ */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.18;
+      animation: orb-drift 18s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+      top: -120px; left: -100px;
+      animation-duration: 20s;
+    }
+
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      top: 30%; right: -80px;
+      opacity: 0.12;
+      animation-duration: 25s;
+      animation-delay: -8s;
+    }
+
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, #0044cc 0%, transparent 70%);
+      bottom: 10%; left: 20%;
+      animation-duration: 22s;
+      animation-delay: -4s;
+    }
+
+    .orb-4 {
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      top: 60%; left: 60%;
+      opacity: 0.08;
+      animation-duration: 16s;
+      animation-delay: -12s;
+    }
+
+    @keyframes orb-drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(30px, -40px) scale(1.05); }
+      66%  { transform: translate(-20px, 30px) scale(0.97); }
+      100% { transform: translate(10px, -20px) scale(1.03); }
+    }
+
+    /* Grid noise texture overlay */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,200,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ============================================================
+       WRAPPER
+    ============================================================ */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 100;
+      transition: background var(--transition), backdrop-filter var(--transition), border-color var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+
+    #navbar.scrolled {
+      background: rgba(5, 13, 26, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom-color: var(--border);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-badge {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .nav-logo-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav-logo-title {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: color var(--transition), background var(--transition);
+      letter-spacing: 0.3px;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+      background: rgba(0, 200, 255, 0.07);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 50%;
+      transform: translateX(-50%);
+      width: 16px; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* CTA button in nav */
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #fff !important;
+      padding: 8px 20px !important;
+      border-radius: 10px !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 20px rgba(0, 200, 255, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(0, 200, 255, 0.4) !important;
+      background: rgba(0,0,0,0) !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .hamburger:hover { background: var(--glass-bg); }
+
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .nav-mobile {
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(5, 13, 26, 0.97);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0 24px;
+      transform: translateY(-110%);
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 99;
+    }
+
+    .nav-mobile.open { transform: translateY(0); }
+
+    .nav-mobile ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-mobile ul a {
+      display: block;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      border-left: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .nav-mobile ul a:hover {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(0,200,255,0.04);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL — BASE STATES
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Delay utilities */
+    .d-1 { transition-delay: 0.1s; }
+    .d-2 { transition-delay: 0.2s; }
+    .d-3 { transition-delay: 0.3s; }
+    .d-4 { transition-delay: 0.4s; }
+    .d-5 { transition-delay: 0.5s; }
+    .d-6 { transition-delay: 0.6s; }
+
+    /* ============================================================
+       SECTION HEADER SHARED — FIXED
+    ============================================================ */
+    .section-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0, 200, 255, 0.08);
+      border: 1px solid rgba(0, 200, 255, 0.2);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.85;
+    }
+
+    /* ============================================================
+       GLASS CARD
+    ============================================================ */
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--shadow), var(--shadow-accent);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(0, 200, 255, 0.28);
+      box-shadow: var(--shadow), 0 0 60px rgba(0, 200, 255, 0.15);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-h);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 64px;
+      align-items: center;
+      padding: 80px 0;
+      width: 100%;
+    }
+
+    /* Left content */
+    .hero-content {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 200, 255, 0.08);
+      border: 1px solid rgba(0, 200, 255, 0.2);
+      border-radius: 100px;
+      padding: 8px 18px 8px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .badge-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: badge-blink 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    @keyframes badge-blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero-name {
+      font-family: var(--font-head);
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .hero-name .dr-prefix {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 24px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Typed title part */
+    .hero-title .typed-text {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: cursor-blink 0.8s step-end infinite;
+    }
+
+    @keyframes cursor-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+
+    /* Hero tags */
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .hero-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-tag svg {
+      width: 12px; height: 12px;
+      fill: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Hero CTA buttons */
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 102, 255, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 200, 255, 0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--glass-bg);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(0, 200, 255, 0.4);
+      background: rgba(0, 200, 255, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .btn-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Hero quick stats strip */
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hstat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hstat-val {
+      font-family: var(--font-head);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hstat-val span {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hstat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ---- Hero right: image ---- */
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Large decorative ring */
+    .hero-ring {
+      position: absolute;
+      width: 420px; height: 420px;
+      border: 1px solid rgba(0, 200, 255, 0.12);
+      border-radius: 50%;
+      animation: ring-rotate 18s linear infinite;
+    }
+
+    .hero-ring::before {
+      content: '';
+      position: absolute;
+      top: -4px; left: 50%;
+      transform: translateX(-50%);
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .hero-ring-2 {
+      width: 480px; height: 480px;
+      border: 1px solid rgba(0, 102, 255, 0.08);
+      animation: ring-rotate 28s linear infinite reverse;
+    }
+
+    @keyframes ring-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Photo container */
+    .hero-photo-container {
+      position: relative;
+      width: 360px; height: 420px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), var(--shadow-accent);
+      z-index: 1;
+      background: var(--surface2);
+    }
+
+    .hero-photo-container img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-photo-container:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Photo gradient overlay */
+    .hero-photo-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Floating info card on photo */
+    .hero-float-card {
+      position: absolute;
+      bottom: -24px;
+      left: -28px;
+      background: rgba(10, 22, 40, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      z-index: 2;
+      min-width: 180px;
+      animation: float-bob 4s ease-in-out infinite;
+    }
+
+    .hero-float-card-2 {
+      position: absolute;
+      top: 28px;
+      right: -28px;
+      background: rgba(10, 22, 40, 0.92);
+      border: 1px solid rgba(0, 102, 255, 0.2);
+      border-radius: 14px;
+      padding: 12px 16px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      z-index: 2;
+      animation: float-bob 4s ease-in-out infinite;
+      animation-delay: -2s;
+    }
+
+    @keyframes float-bob {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .fcard-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .fcard-value {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .fcard-accent { color: var(--accent); }
+
+    .fcard-dots {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .fcard-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .fcard-dot:nth-child(2) { background: var(--accent2); opacity: 0.7; }
+    .fcard-dot:nth-child(3) { background: var(--muted); opacity: 0.4; }
+
+    /* ============================================================
+       ABOUT SECTION
+    ============================================================ */
+    #about {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* Left text column */
+    .about-text {}
+
+    .about-eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0, 200, 255, 0.08);
+      border: 1px solid rgba(0, 200, 255, 0.2);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 20px;
+    }
+
+    .about-heading {
+      font-family: var(--font-head);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      line-height: 1.22;
+      color: var(--text);
+      margin-bottom: 24px;
+      letter-spacing: -0.4px;
+    }
+
+    .about-heading span {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-body p {
+      font-size: 15.5px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .about-body p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-highlights {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .about-hi-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: rgba(0,200,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .about-hi-item:hover {
+      border-color: rgba(0,200,255,0.25);
+      background: rgba(0,200,255,0.07);
+    }
+
+    .hi-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, rgba(0,102,255,0.2), rgba(0,200,255,0.2));
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .hi-text { flex: 1; }
+
+    .hi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .hi-val {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Right column: stat cards + quote */
+    .about-right {}
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      padding: 28px 22px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 2px 2px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .stat-card:hover::before { opacity: 1; }
+
+    .stat-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-family: var(--font-head);
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-number.c1 { color: var(--accent); }
+    .stat-number.c2 { color: #4d9fff; }
+    .stat-number.c3 { color: #7bc8ff; }
+    .stat-number.c4 { color: var(--accent2); }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+    }
+
+    /* Quote card */
+    .about-quote {
+      padding: 28px 28px 28px 36px;
+      position: relative;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: rgba(0, 200, 255, 0.04);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-quote::before {
+      content: '"';
+      position: absolute;
+      top: -10px; left: 20px;
+      font-family: var(--font-head);
+      font-size: 80px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.25;
+    }
+
+    .quote-text {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.85;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qa-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .qa-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .qa-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .qa-role {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       RESPONSIVE — TABLET
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr 380px;
+        gap: 48px;
+      }
+
+      .hero-photo-container {
+        width: 300px; height: 360px;
+      }
+
+      .hero-ring  { width: 360px; height: 360px; }
+      .hero-ring-2 { width: 420px; height: 420px; }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE
+    ============================================================ */
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+
+      .container { padding: 0 20px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 48px 0 60px;
+        text-align: center;
+      }
+
+      .hero-image-wrap {
+        order: -1;
+      }
+
+      .hero-photo-container {
+        width: 260px; height: 310px;
+        margin: 0 auto;
+      }
+
+      .hero-ring  { width: 290px; height: 290px; }
+      .hero-ring-2 { width: 340px; height: 340px; }
+
+      .hero-float-card { bottom: -20px; left: -10px; }
+      .hero-float-card-2 { top: 10px; right: -10px; }
+
+      .hero-tags { justify-content: center; }
+      .hero-ctas { justify-content: center; }
+
+      .hero-stats {
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .hero-desc { margin-left: auto; margin-right: auto; text-align: left; }
+
+      .about-inner { gap: 40px; }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+
+      .section-header { margin-bottom: 48px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 18px; }
+      .hstat-val  { font-size: 22px; }
+      .hero-float-card, .hero-float-card-2 { display: none; }
+      .hero-ring, .hero-ring-2 { display: none; }
+    }
+
+    /* ============================================================
+       PART 2 — EXPERIENCE TIMELINE
+    ============================================================ */
+    #experience {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    /* Section divider line */
+    .section-divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 3px;
+      margin: 0 auto 72px;
+    }
+
+    /* Timeline container */
+    .timeline {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* Centre spine */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg,
+        transparent 0%,
+        var(--accent2) 8%,
+        rgba(0,200,255,0.3) 50%,
+        var(--accent) 92%,
+        transparent 100%);
+    }
+
+    /* Each item wrapper */
+    .tl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    /* Alternate left / right */
+    .tl-item:nth-child(odd)  { flex-direction: row; }
+    .tl-item:nth-child(even) { flex-direction: row-reverse; }
+
+    /* Card side — 50% minus the centre dot area */
+    .tl-card-wrap {
+      width: calc(50% - 36px);
+      flex-shrink: 0;
+    }
+
+    .tl-item:nth-child(odd)  .tl-card-wrap { padding-right: 0; }
+    .tl-item:nth-child(even) .tl-card-wrap { padding-left: 0; }
+
+    /* Spacer for the other side */
+    .tl-spacer {
+      width: calc(50% - 36px);
+      flex-shrink: 0;
+    }
+
+    /* Centre dot */
+    .tl-dot-wrap {
+      width: 72px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      padding-top: 22px;
+    }
+
+    .tl-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 4px rgba(0,200,255,0.12), 0 0 16px rgba(0,200,255,0.3);
+      position: relative;
+      z-index: 1;
+      transition: box-shadow 0.3s;
+      flex-shrink: 0;
+    }
+
+    .tl-item:hover .tl-dot {
+      box-shadow: 0 0 0 6px rgba(0,200,255,0.2), 0 0 24px rgba(0,200,255,0.5);
+    }
+
+    /* The card itself */
+    .tl-card {
+      padding: 24px 26px;
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--shadow);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tl-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tl-card:hover {
+      border-color: rgba(0,200,255,0.28);
+      box-shadow: var(--shadow), 0 0 40px rgba(0,200,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .tl-card:hover::before { opacity: 1; }
+
+    /* Arrow connector */
+    .tl-item:nth-child(odd) .tl-card::after {
+      content: '';
+      position: absolute;
+      top: 26px;
+      right: -9px;
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 9px solid rgba(0,200,255,0.13);
+    }
+
+    .tl-item:nth-child(even) .tl-card::after {
+      content: '';
+      position: absolute;
+      top: 26px;
+      left: -9px;
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 9px solid rgba(0,200,255,0.13);
+    }
+
+    /* Card content */
+    .tl-org {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .tl-org-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, rgba(0,102,255,0.2), rgba(0,200,255,0.2));
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .tl-org-name {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .tl-org-total {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .tl-role {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .tl-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tl-date {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .tl-date svg {
+      width: 12px; height: 12px;
+      fill: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .tl-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      background: rgba(0,200,255,0.1);
+      border: 1px solid rgba(0,200,255,0.2);
+      color: var(--accent);
+    }
+
+    .tl-badge.present {
+      background: rgba(0,200,100,0.12);
+      border-color: rgba(0,200,100,0.25);
+      color: #4dd990;
+    }
+
+    .tl-loc {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .tl-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Sub-roles (nested under same org) */
+    .tl-subroles {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tl-subrole {
+      padding: 10px 14px;
+      background: rgba(0,200,255,0.04);
+      border-left: 2px solid rgba(0,200,255,0.25);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .tl-subrole-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .tl-subrole-date {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       EXPERIENCE MOBILE
+    ============================================================ */
+    @media (max-width: 768px) {
+      .timeline::before { left: 20px; }
+
+      .tl-item,
+      .tl-item:nth-child(even) { flex-direction: row !important; }
+
+      .tl-spacer { display: none; }
+
+      .tl-card-wrap {
+        width: 100%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      .tl-dot-wrap {
+        width: 40px;
+        padding-top: 18px;
+        flex-shrink: 0;
+      }
+
+      .tl-item:nth-child(odd) .tl-card::after,
+      .tl-item:nth-child(even) .tl-card::after { display: none; }
+    }
+
+    /* ============================================================
+       EDUCATION SECTION
+    ============================================================ */
+    #education {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .edu-card {
+      padding: 30px 28px;
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--shadow);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .edu-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at bottom right, rgba(0,200,255,0.06), transparent 70%);
+      border-radius: 0 0 var(--radius-lg) 0;
+      pointer-events: none;
+    }
+
+    .edu-card:hover {
+      border-color: rgba(0,200,255,0.3);
+      box-shadow: var(--shadow), 0 0 50px rgba(0,200,255,0.1);
+      transform: translateY(-5px);
+    }
+
+    /* Year badge top-right */
+    .edu-year {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(0,200,255,0.08);
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 8px;
+      padding: 4px 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .edu-icon-wrap {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(0,102,255,0.18), rgba(0,200,255,0.18));
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 16px rgba(0,102,255,0.15);
+    }
+
+    .edu-degree {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.25;
+      padding-right: 60px; /* avoid overlap with year badge */
+    }
+
+    .edu-field {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .edu-institution {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .edu-institution svg {
+      width: 12px; height: 12px;
+      fill: var(--muted);
+      flex-shrink: 0;
+    }
+
+    /* Vertical number indicator */
+    .edu-card::before {
+      content: attr(data-num);
+      position: absolute;
+      bottom: 16px; right: 16px;
+      font-family: var(--font-head);
+      font-size: 52px;
+      font-weight: 800;
+      color: rgba(0,200,255,0.05);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @media (max-width: 640px) {
+      .edu-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       CERTIFICATIONS SECTION
+    ============================================================ */
+    #certifications {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cert-card {
+      padding: 32px 28px;
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    .cert-card:hover {
+      border-color: rgba(0,200,255,0.35);
+      box-shadow: var(--shadow), 0 0 60px rgba(0,200,255,0.12);
+      transform: translateY(-5px);
+    }
+
+    /* Glow corner */
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(0,200,255,0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Verified checkmark badge */
+    .cert-verified {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #00c851, #00ff85);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 12px rgba(0,200,80,0.4);
+    }
+
+    .cert-verified svg {
+      width: 14px; height: 14px;
+      fill: #fff;
+    }
+
+    .cert-issuer-logo {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, rgba(0,102,255,0.15), rgba(0,200,255,0.15));
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .cert-name {
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 8px;
+      padding-right: 32px;
+    }
+
+    .cert-issuer {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .cert-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .cert-tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .cert-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    .cert-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cert-type {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .cert-credential-link {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: 0.3px;
+      transition: opacity 0.2s;
+    }
+
+    .cert-credential-link:hover { opacity: 0.7; }
+
+    /* ============================================================
+       SKILLS SECTION
+    ============================================================ */
+    #skills {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Skill group */
+    .skill-group {
+      margin-bottom: 40px;
+    }
+
+    .skill-group:last-child { margin-bottom: 0; }
+
+    .skill-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Single skill row */
+    .skill-item {
+      margin-bottom: 18px;
+    }
+
+    .skill-item:last-child { margin-bottom: 0; }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 7px;
+    }
+
+    .skill-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-icon {
+      font-size: 14px;
+    }
+
+    .skill-pct {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--font-head);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    /* Bar track */
+    .skill-bar-track {
+      height: 6px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Bar fill — animated on scroll */
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .skill-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 6px; height: 100%;
+      background: rgba(255,255,255,0.4);
+      border-radius: 10px;
+      filter: blur(2px);
+    }
+
+    /* Colour variants */
+    .sf-cyan    { background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+    .sf-blue    { background: linear-gradient(90deg, #0055dd, #4d9fff); }
+    .sf-teal    { background: linear-gradient(90deg, #007acc, #00d4ff); }
+    .sf-violet  { background: linear-gradient(90deg, #5533ff, #9966ff); }
+    .sf-green   { background: linear-gradient(90deg, #007755, #00c880); }
+    .sf-indigo  { background: linear-gradient(90deg, #3300cc, #6655ff); }
+
+    /* Right column — radar / visual card */
+    .skills-visual-card {
+      padding: 36px 32px;
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+    }
+
+    .svc-title {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .svc-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* Hexagonal skill bubbles */
+    .skill-bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .skill-bubble {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: default;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-bubble::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .skill-bubble:hover::before { opacity: 0.12; }
+
+    .skill-bubble:hover {
+      border-color: rgba(0,200,255,0.35);
+      transform: translateY(-2px);
+    }
+
+    .skill-bubble span { position: relative; z-index: 1; }
+
+    .sb-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+
+    /* Endorsements notice */
+    .endorsement-note {
+      background: rgba(0,200,255,0.05);
+      border: 1px solid rgba(0,200,255,0.12);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .en-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .en-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .en-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .en-name {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .en-count {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(0,200,255,0.08);
+      border-radius: 6px;
+      padding: 2px 8px;
+    }
+
+    @media (max-width: 1024px) {
+      .skills-layout { grid-template-columns: 1fr; }
+      .skills-visual-card { position: static; }
+    }
+
+    @media (max-width: 768px) {
+      #experience, #education, #certifications, #skills { padding: 80px 0; }
+    }
+
+    /* ============================================================
+       PART 3 — CONTACT SECTION
+    ============================================================ */
+    #contact {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* Left: info column */
+    .contact-info {}
+
+    .contact-tagline {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 36px;
+    }
+
+    /* Info cards */
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .cinfo-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 22px;
+      border-radius: var(--radius);
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .cinfo-card:hover {
+      border-color: rgba(0,200,255,0.35);
+      transform: translateX(6px);
+      box-shadow: var(--shadow), 0 0 30px rgba(0,200,255,0.08);
+    }
+
+    .cinfo-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, rgba(0,102,255,0.2), rgba(0,200,255,0.2));
+      border: 1px solid rgba(0,200,255,0.22);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(0,102,255,0.12);
+    }
+
+    .cinfo-text { flex: 1; }
+
+    .cinfo-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .cinfo-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .cinfo-arrow {
+      color: var(--accent);
+      font-size: 18px;
+      opacity: 0.5;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .cinfo-card:hover .cinfo-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* Location block */
+    .contact-location {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px 22px;
+      border-radius: var(--radius);
+      background: rgba(0,200,255,0.04);
+      border: 1px solid var(--border);
+    }
+
+    .cloc-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .cloc-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .cloc-value {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .cloc-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Right: Form */
+    .contact-form-wrap {
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .cf-title {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .cf-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .cf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .cf-field {
+      margin-bottom: 18px;
+    }
+
+    .cf-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+
+    .cf-input,
+    .cf-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      resize: none;
+    }
+
+    .cf-input::placeholder,
+    .cf-textarea::placeholder {
+      color: rgba(107,143,168,0.5);
+    }
+
+    .cf-input:focus,
+    .cf-textarea:focus {
+      border-color: rgba(0,200,255,0.45);
+      box-shadow: 0 0 0 3px rgba(0,200,255,0.08);
+      background: rgba(0,200,255,0.03);
+    }
+
+    .cf-textarea { height: 120px; }
+
+    .cf-submit {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0,102,255,0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+      letter-spacing: 0.2px;
+      margin-top: 4px;
+    }
+
+    .cf-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,200,255,0.45);
+    }
+
+    .cf-submit:active { transform: translateY(0); }
+
+    /* Success message */
+    .cf-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .cf-success.show { display: block; }
+
+    .cf-success-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .cf-success-text {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .cf-success-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 480px) {
+      .cf-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 24px 20px; }
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 56px 0 32px;
+      position: relative;
+    }
+
+    #footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+      opacity: 0.4;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    /* Brand column */
+    .footer-brand {}
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo-badge {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0,200,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .footer-logo-name {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .footer-logo-title {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-tagline {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 280px;
+      margin-bottom: 22px;
+    }
+
+    /* Social icons */
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .social-btn:hover {
+      background: rgba(0,200,255,0.1);
+      border-color: rgba(0,200,255,0.3);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    /* Nav columns */
+    .footer-col-title {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 13.5px;
+      color: var(--muted);
+      transition: color 0.2s, padding-left 0.2s;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 4px;
+    }
+
+    /* Bottom bar */
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .footer-copy span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .footer-credit {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .footer-credit span { color: #e05b5b; }
+
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-brand { grid-column: 1 / -1; }
+      #contact { padding: 80px 0; }
+      #footer { padding: 48px 0 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* ============================================================
+       SCROLL TO TOP BUTTON
+    ============================================================ */
+    #scrollTop {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border: none;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 200;
+      box-shadow: 0 8px 28px rgba(0,102,255,0.4);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s;
+      pointer-events: none;
+    }
+
+    #scrollTop.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #scrollTop:hover {
+      box-shadow: 0 12px 36px rgba(0,200,255,0.5);
+      transform: translateY(-3px);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       LOADING SCREEN
+  ============================================================ -->
+  <div id="loader">
+    <div class="loader-icon">
+      <div class="loader-ring"></div>
+      <div class="loader-cross">✚</div>
+    </div>
+    <div class="loader-text">Loading Profile</div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BACKGROUND
+  ============================================================ -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <!-- ============================================================
+       MAIN WRAPPER
+  ============================================================ -->
+  <div class="wrapper">
+
+    <!-- ============================================================
+         NAVIGATION
+    ============================================================ -->
+    <nav id="navbar">
+      <div class="container">
+        <div class="nav-inner">
+
+          <!-- Logo -->
+          <a href="#hero" class="nav-logo">
+            <div class="nav-logo-badge">RK</div>
+            <div class="nav-logo-text">
+              <span class="nav-logo-name">Dr. Kanak</span>
+              <span class="nav-logo-title">FCPS · Medicine</span>
+            </div>
+          </a>
+
+          <!-- Desktop links -->
+          <ul class="nav-links">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact" class="nav-cta">Book Consultation</a></li>
+          </ul>
+
+          <!-- Hamburger (mobile) -->
+          <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+          </button>
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile nav -->
+    <div class="nav-mobile" id="navMobile">
+      <ul>
+        <li><a href="#hero"       class="mob-link">Home</a></li>
+        <li><a href="#about"      class="mob-link">About</a></li>
+        <li><a href="#experience" class="mob-link">Experience</a></li>
+        <li><a href="#education"  class="mob-link">Education</a></li>
+        <li><a href="#skills"     class="mob-link">Skills</a></li>
+        <li><a href="#contact"    class="mob-link">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- ============================================================
+         HERO SECTION
+    ============================================================ -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-inner">
+
+          <!-- Left content -->
+          <div class="hero-content">
+
+            <!-- Badge -->
+            <div class="hero-badge reveal d-1">
+              <span class="badge-dot"></span>
+              Available for Consultations &nbsp;·&nbsp; Dhaka, Bangladesh
+            </div>
+
+            <!-- Name -->
+            <h1 class="hero-name reveal d-2">
+              <span class="dr-prefix">Dr.</span> Rashedul<br />Hassan Kanak
+            </h1>
+
+            <!-- Dynamic title -->
+            <p class="hero-title reveal d-3">
+              <span class="typed-text" id="typedTitle"></span><span class="cursor-blink"></span>
+            </p>
+
+            <!-- Description -->
+            <p class="hero-desc reveal d-4">
+              A seasoned clinician with over <strong>18 years</strong> of dedicated service in Internal Medicine.
+              Committed to bridging clinical excellence with medical education, serving patients across
+              Dhaka's premier healthcare institutions.
+            </p>
+
+            <!-- Tags -->
+            <div class="hero-tags reveal d-4">
+              <span class="hero-tag">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                FCPS, Internal Medicine
+              </span>
+              <span class="hero-tag">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+                GCP Certified
+              </span>
+              <span class="hero-tag">
+                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18V15l7 4 7-4v-3.82L23 9 12 3zm0 2.27L19.5 9 12 12.73 4.5 9 12 5.27zM6 13.45V15l6 3.45L18 15v-1.55l-6 3.27-6-3.27z"/></svg>
+                Medical Educator
+              </span>
+              <span class="hero-tag">
+                <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                18+ Years Experience
+              </span>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="hero-ctas reveal d-5">
+              <a href="#contact" class="btn-primary">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                Book Consultation
+              </a>
+              <a href="#about" class="btn-secondary">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                Learn More
+              </a>
+            </div>
+
+            <!-- Quick stats -->
+            <div class="hero-stats reveal d-6">
+              <div class="hstat">
+                <div class="hstat-val"><span id="hs1">0</span>+</div>
+                <div class="hstat-label">Years Practice</div>
+              </div>
+              <div class="hstat">
+                <div class="hstat-val"><span id="hs2">0</span>+</div>
+                <div class="hstat-label">Patients Served</div>
+              </div>
+              <div class="hstat">
+                <div class="hstat-val"><span id="hs3">0</span>+</div>
+                <div class="hstat-label">Publications</div>
+              </div>
+              <div class="hstat">
+                <div class="hstat-val"><span id="hs4">0</span></div>
+                <div class="hstat-label">Certifications</div>
+              </div>
+            </div>
+
+          </div><!-- /hero-content -->
+
+          <!-- Right: image -->
+          <div class="hero-image-wrap reveal-right d-2">
+            <div class="hero-ring"></div>
+            <div class="hero-ring hero-ring-2"></div>
+
+            <div class="hero-photo-container">
+              <img
+                src="https://doctors24bucket.s3.us-east-2.amazonaws.com/uploads/2026/03/08/dr.-rashedul-hassan-kanak-8dnou5t1.png"
+                alt="Dr. Rashedul Hassan Kanak"
+                loading="eager"
+              />
+            </div>
+
+            <!-- Floating card bottom-left -->
+            <div class="hero-float-card glass-card" style="border-radius:14px;">
+              <div class="fcard-label">Current Position</div>
+              <div class="fcard-value">Associate <span class="fcard-accent">Professor</span></div>
+              <div class="fcard-value" style="font-size:12px; color: var(--muted); font-weight:400; margin-top:2px;">Green Life Medical College</div>
+              <div class="fcard-dots">
+                <div class="fcard-dot"></div>
+                <div class="fcard-dot"></div>
+                <div class="fcard-dot"></div>
+              </div>
+            </div>
+
+            <!-- Floating card top-right -->
+            <div class="hero-float-card-2">
+              <div class="fcard-label">Specialty</div>
+              <div class="fcard-value"><span class="fcard-accent">Internal</span> Medicine</div>
+              <div style="margin-top:8px; font-size:11px; color:var(--muted);">FCPS · MBBS</div>
+            </div>
+
+          </div><!-- /hero-image-wrap -->
+
+        </div><!-- /hero-inner -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT SECTION
+    ============================================================ -->
+    <section id="about">
+      <div class="container">
+
+        <div class="about-inner">
+
+          <!-- Left: Text -->
+          <div class="about-text">
+
+            <div class="about-eyebrow reveal">About the Doctor</div>
+
+            <h2 class="about-heading reveal d-1">
+              Healing with <span>Science,</span><br />Leading with <span>Compassion</span>
+            </h2>
+
+            <div class="about-body reveal d-2">
+              <p>
+                Dr. Rashedul Hassan Kanak is a distinguished <strong>Internal Medicine Specialist</strong> and
+                medical educator based in Dhaka, Bangladesh. With over <strong>18 years of clinical experience</strong>,
+                he has built a reputation for diagnostic excellence and compassionate patient care across
+                some of the country's most prestigious healthcare institutions.
+              </p>
+              <p>
+                Holding an <strong>MBBS from Dhaka Medical College</strong> and the prestigious
+                <strong>FCPS fellowship in Internal Medicine</strong> from the Bangladesh College of Physicians
+                and Surgeons, Dr. Kanak combines rigorous academic training with deep clinical intuition
+                developed through years at the bedside.
+              </p>
+              <p>
+                Currently serving as <strong>Associate Professor of Medicine</strong> at Green Life Medical College
+                and as a <strong>Medicine Specialist</strong> at Medinova Medical Services, Malibag Branch, he continues
+                to shape the next generation of physicians while delivering world-class patient care. His clinical
+                interests span internal medicine, clinical research, and healthcare management.
+              </p>
+            </div>
+
+            <!-- Highlight rows -->
+            <div class="about-highlights reveal d-3">
+              <div class="about-hi-item">
+                <div class="hi-icon">🏥</div>
+                <div class="hi-text">
+                  <div class="hi-label">Primary Affiliation</div>
+                  <div class="hi-val">Green Life Medical College & Medinova Medical Services</div>
+                </div>
+              </div>
+              <div class="about-hi-item">
+                <div class="hi-icon">🎓</div>
+                <div class="hi-text">
+                  <div class="hi-label">Highest Qualification</div>
+                  <div class="hi-val">FCPS, Internal Medicine — BCPS, Dhaka</div>
+                </div>
+              </div>
+              <div class="about-hi-item">
+                <div class="hi-icon">🔬</div>
+                <div class="hi-text">
+                  <div class="hi-label">Research Credentials</div>
+                  <div class="hi-val">GCP Certified · icddr,b Clinical Research Training</div>
+                </div>
+              </div>
+              <div class="about-hi-item">
+                <div class="hi-icon">📍</div>
+                <div class="hi-text">
+                  <div class="hi-label">Location</div>
+                  <div class="hi-val">Dhaka, Bangladesh · Available for In-Person & Teleconsult</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /about-text -->
+
+          <!-- Right: Stats + quote -->
+          <div class="about-right">
+
+            <!-- Stats grid -->
+            <div class="stats-grid reveal d-2">
+
+              <div class="glass-card stat-card">
+                <div class="stat-icon">🩺</div>
+                <div class="stat-number c1" data-target="18">0</div>
+                <div class="stat-label">Years Practice</div>
+              </div>
+
+              <div class="glass-card stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number c2" data-target="2000">0</div>
+                <div class="stat-label">Patients/Year</div>
+              </div>
+
+              <div class="glass-card stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-number c3" data-target="10">0</div>
+                <div class="stat-label">Publications</div>
+              </div>
+
+              <div class="glass-card stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number c4" data-target="4">0</div>
+                <div class="stat-label">Certifications</div>
+              </div>
+
+            </div><!-- /stats-grid -->
+
+            <!-- Quote card -->
+            <div class="about-quote glass-card reveal d-4">
+              <p class="quote-text">
+                "Medicine is not merely the art of healing — it is a sacred commitment to human dignity.
+                Every patient who trusts me with their health receives not just clinical expertise, but
+                genuine compassion and the very best of evidence-based medicine."
+              </p>
+              <div class="quote-author">
+                <div class="qa-avatar">
+                  <img
+                    src="https://doctors24bucket.s3.us-east-2.amazonaws.com/uploads/2026/03/08/dr.-rashedul-hassan-kanak-8dnou5t1.png"
+                    alt="Dr. Kanak"
+                  />
+                </div>
+                <div>
+                  <div class="qa-name">Dr. Rashedul Hassan Kanak</div>
+                  <div class="qa-role">FCPS · Associate Professor of Medicine</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Area of expertise tags -->
+            <div class="reveal d-5" style="margin-top:20px;">
+              <div style="font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--muted); margin-bottom:12px; font-weight:600;">Areas of Expertise</div>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                <span style="padding:6px 14px; border-radius:100px; font-size:12px; font-weight:500; background:rgba(0,200,255,0.08); border:1px solid rgba(0,200,255,0.18); color:var(--accent);">Internal Medicine</span>
+                <span style="padding:6px 14px; border-radius:100px; font-size:12px; font-weight:500; background:rgba(0,102,255,0.08); border:1px solid rgba(0,102,255,0.18); color:#4d9fff;">Clinical Research</span>
+                <span style="padding:6px 14px; border-radius:100px; font-size:12px; font-weight:500; background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text);">Medical Education</span>
+                <span style="padding:6px 14px; border-radius:100px; font-size:12px; font-weight:500; background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text);">Emergency Medicine</span>
+                <span style="padding:6px 14px; border-radius:100px; font-size:12px; font-weight:500; background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text);">Healthcare Management</span>
+                <span style="padding:6px 14px; border-radius:100px; font-size:12px; font-weight:500; background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text);">Public Health</span>
+              </div>
+            </div>
+
+          </div><!-- /about-right -->
+
+        </div><!-- /about-inner -->
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXPERIENCE SECTION
+    ============================================================ -->
+    <section id="experience">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-eyebrow reveal">Career Journey</div>
+          <h2 class="section-title reveal d-1">Professional <span>Experience</span></h2>
+          <p class="section-subtitle reveal d-2">Over 18 years of dedicated clinical service across premier healthcare institutions in Bangladesh.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="timeline">
+
+          <!-- 1: Green Life Medical College -->
+          <div class="tl-item reveal">
+            <div class="tl-card-wrap">
+              <div class="tl-card">
+                <div class="tl-org">
+                  <div class="tl-org-icon">🏫</div>
+                  <div>
+                    <div class="tl-org-name">Green Life Medical College</div>
+                    <div class="tl-org-total">7 yrs 6 mos · Academic</div>
+                  </div>
+                </div>
+                <div class="tl-subroles">
+                  <div class="tl-subrole">
+                    <div class="tl-subrole-title">Associate Professor of Medicine</div>
+                    <div class="tl-subrole-date">Jun 2022 – Present &nbsp;·&nbsp; 3 yrs 11 mos &nbsp;<span style="color:#4dd990;font-weight:600;">● Active</span></div>
+                  </div>
+                  <div class="tl-subrole">
+                    <div class="tl-subrole-title">Assistant Professor of Medicine</div>
+                    <div class="tl-subrole-date">Nov 2018 – May 2022 &nbsp;·&nbsp; 3 yrs 7 mos</div>
+                  </div>
+                </div>
+                <p class="tl-desc">Leading undergraduate and postgraduate medical education in Internal Medicine. Conducts bedside teaching, clinical case reviews, and mentors junior physicians and residents.</p>
+              </div>
+            </div>
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-spacer"></div>
+          </div>
+
+          <!-- 2: Medinova -->
+          <div class="tl-item reveal d-1">
+            <div class="tl-spacer"></div>
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card-wrap">
+              <div class="tl-card">
+                <div class="tl-org">
+                  <div class="tl-org-icon">🏥</div>
+                  <div>
+                    <div class="tl-org-name">Medinova Medical Services</div>
+                    <div class="tl-org-total">Malibag Branch, Hosaf Tower</div>
+                  </div>
+                </div>
+                <div class="tl-role">Medicine Specialist</div>
+                <div class="tl-meta">
+                  <div class="tl-date">
+                    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    Jan 2018 – Present · 8 yrs 4 mos
+                  </div>
+                  <span class="tl-badge present">● Active</span>
+                </div>
+                <div class="tl-loc">📍 Hosaf Tower, Malibag Moore, Dhaka</div>
+                <p class="tl-desc">Providing specialist internal medicine consultations, diagnostic workups, and treatment plans for complex medical conditions at a high-volume outpatient centre.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3: MOHFW -->
+          <div class="tl-item reveal d-2">
+            <div class="tl-card-wrap">
+              <div class="tl-card">
+                <div class="tl-org">
+                  <div class="tl-org-icon">🏛️</div>
+                  <div>
+                    <div class="tl-org-name">Ministry of Health &amp; Family Welfare</div>
+                    <div class="tl-org-total">Government of Bangladesh</div>
+                  </div>
+                </div>
+                <div class="tl-role">Internist</div>
+                <div class="tl-meta">
+                  <div class="tl-date">
+                    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    Nov 2008 – Oct 2018 · 10 yrs
+                  </div>
+                  <span class="tl-badge">Govt. Service</span>
+                </div>
+                <div class="tl-loc">📍 DGHS, Mohakhali, Dhaka</div>
+                <p class="tl-desc">Served as an internist under the national public health system, managing wards, conducting clinical audits, and delivering evidence-based care to thousands of patients annually.</p>
+              </div>
+            </div>
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-spacer"></div>
+          </div>
+
+          <!-- 4: Gastroliver -->
+          <div class="tl-item reveal d-1">
+            <div class="tl-spacer"></div>
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card-wrap">
+              <div class="tl-card">
+                <div class="tl-org">
+                  <div class="tl-org-icon">🔬</div>
+                  <div>
+                    <div class="tl-org-name">Gastroliver Hospital &amp; Research Institute</div>
+                    <div class="tl-org-total">Specialist Hospital · Research</div>
+                  </div>
+                </div>
+                <div class="tl-role">Medical Officer</div>
+                <div class="tl-meta">
+                  <div class="tl-date">
+                    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    Mar 2010 – Sep 2013 · 3 yrs 7 mos
+                  </div>
+                </div>
+                <div class="tl-loc">📍 Panthapath, Dhaka</div>
+                <p class="tl-desc">Managed patients with gastroenterological and hepatic conditions alongside general medicine, contributing to clinical research in a specialised tertiary care setting.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5: Dhaka Medical College Hospital Honorary -->
+          <div class="tl-item reveal d-2">
+            <div class="tl-card-wrap">
+              <div class="tl-card">
+                <div class="tl-org">
+                  <div class="tl-org-icon">🎓</div>
+                  <div>
+                    <div class="tl-org-name">Dhaka Medical College Hospital</div>
+                    <div class="tl-org-total">Tertiary Teaching Hospital</div>
+                  </div>
+                </div>
+                <div class="tl-role">Honorary Medical Officer</div>
+                <div class="tl-meta">
+                  <div class="tl-date">
+                    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    Jan 2007 – Nov 2008 · 1 yr 11 mos
+                  </div>
+                </div>
+                <div class="tl-loc">📍 Bakshibazar, Dhaka</div>
+                <p class="tl-desc">Volunteered as Honorary Medical Officer, gaining hands-on experience in one of Bangladesh's largest public teaching hospitals during early career formation.</p>
+              </div>
+            </div>
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-spacer"></div>
+          </div>
+
+          <!-- 6: Central Hospitals -->
+          <div class="tl-item reveal d-1">
+            <div class="tl-spacer"></div>
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card-wrap">
+              <div class="tl-card">
+                <div class="tl-org">
+                  <div class="tl-org-icon">🏨</div>
+                  <div>
+                    <div class="tl-org-name">Central Hospitals Limited</div>
+                    <div class="tl-org-total">Private Hospital</div>
+                  </div>
+                </div>
+                <div class="tl-role">Medical Officer</div>
+                <div class="tl-meta">
+                  <div class="tl-date">
+                    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    Sep 2006 – Nov 2008 · 2 yrs 3 mos
+                  </div>
+                </div>
+                <div class="tl-loc">📍 Green Road, Dhaka</div>
+                <p class="tl-desc">Delivered comprehensive general medicine services in a busy private hospital setting, managing inpatient wards and emergency cases across multiple disciplines.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7: Intern DMCH -->
+          <div class="tl-item reveal d-2">
+            <div class="tl-card-wrap">
+              <div class="tl-card">
+                <div class="tl-org">
+                  <div class="tl-org-icon">🩺</div>
+                  <div>
+                    <div class="tl-org-name">Dhaka Medical College Hospital</div>
+                    <div class="tl-org-total">Internship · Foundation Year</div>
+                  </div>
+                </div>
+                <div class="tl-role">Intern Doctor</div>
+                <div class="tl-meta">
+                  <div class="tl-date">
+                    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    Aug 2005 – Aug 2006 · 1 yr 1 mo
+                  </div>
+                  <span class="tl-badge">Foundation</span>
+                </div>
+                <div class="tl-loc">📍 Bakshibazar, Dhaka</div>
+                <p class="tl-desc">Completed mandatory internship training in Medicine, Surgery, and Gynaecology at Bangladesh's most prestigious public teaching hospital, building core clinical foundations.</p>
+              </div>
+            </div>
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-spacer"></div>
+          </div>
+
+        </div><!-- /timeline -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EDUCATION SECTION
+    ============================================================ -->
+    <section id="education">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-eyebrow reveal">Academic Background</div>
+          <h2 class="section-title reveal d-1">Education &amp; <span>Qualifications</span></h2>
+          <p class="section-subtitle reveal d-2">A strong academic foundation from Bangladesh's most esteemed institutions, spanning two decades of scholarship.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="edu-grid">
+
+          <!-- FCPS -->
+          <div class="edu-card glass-card reveal" data-num="01">
+            <span class="edu-year">2007 – 2017</span>
+            <div class="edu-icon-wrap">🏅</div>
+            <div class="edu-degree">FCPS</div>
+            <div class="edu-field">Internal Medicine · Fellowship</div>
+            <div class="edu-institution">
+              <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+              Bangladesh College of Physicians &amp; Surgeons
+            </div>
+          </div>
+
+          <!-- MBBS -->
+          <div class="edu-card glass-card reveal d-1" data-num="02">
+            <span class="edu-year">2000 – 2005</span>
+            <div class="edu-icon-wrap">🎓</div>
+            <div class="edu-degree">MBBS</div>
+            <div class="edu-field">Medicine, Surgery &amp; Gynaecology</div>
+            <div class="edu-institution">
+              <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+              Dhaka Medical College
+            </div>
+          </div>
+
+          <!-- HSC -->
+          <div class="edu-card glass-card reveal d-2" data-num="03">
+            <span class="edu-year">1997 – 1999</span>
+            <div class="edu-icon-wrap">📖</div>
+            <div class="edu-degree">HSC</div>
+            <div class="edu-field">Higher Secondary Certificate · Science</div>
+            <div class="edu-institution">
+              <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+              Notre Dame College, Dhaka
+            </div>
+          </div>
+
+          <!-- SSC -->
+          <div class="edu-card glass-card reveal d-3" data-num="04">
+            <span class="edu-year">1992 – 1997</span>
+            <div class="edu-icon-wrap">✏️</div>
+            <div class="edu-degree">SSC</div>
+            <div class="edu-field">Secondary School Certificate · Science</div>
+            <div class="edu-institution">
+              <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 17l-7-3.82v-4L12 17l-7-3.82z"/></svg>
+              Ideal School &amp; College, Motijheel
+            </div>
+          </div>
+
+        </div><!-- /edu-grid -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CERTIFICATIONS SECTION
+    ============================================================ -->
+    <section id="certifications">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-eyebrow reveal">Credentials</div>
+          <h2 class="section-title reveal d-1">Certifications &amp; <span>Training</span></h2>
+          <p class="section-subtitle reveal d-2">Internationally recognised certifications in clinical research and good clinical practice standards.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="cert-grid">
+
+          <!-- icddr,b -->
+          <div class="cert-card reveal">
+            <div class="cert-verified">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            </div>
+            <div class="cert-issuer-logo">🧬</div>
+            <div class="cert-name">Clinical Research Training Certificate</div>
+            <div class="cert-issuer">icddr,b — International Centre for Diarrhoeal Disease Research, Bangladesh</div>
+            <div class="cert-tags">
+              <span class="cert-tag">Clinical Research</span>
+              <span class="cert-tag">Research Ethics</span>
+              <span class="cert-tag">Study Design</span>
+              <span class="cert-tag">Data Collection</span>
+            </div>
+            <div class="cert-divider"></div>
+            <div class="cert-footer">
+              <span class="cert-type">Research Training</span>
+              <span class="cert-credential-link">
+                Verified ✓
+              </span>
+            </div>
+          </div>
+
+          <!-- GCP -->
+          <div class="cert-card reveal d-2">
+            <div class="cert-verified">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            </div>
+            <div class="cert-issuer-logo">🔬</div>
+            <div class="cert-name">Good Clinical Practice (GCP) Training Certificate</div>
+            <div class="cert-issuer">ICH-GCP E6 — International Standard for Clinical Trials</div>
+            <div class="cert-tags">
+              <span class="cert-tag">GCP Compliance</span>
+              <span class="cert-tag">Clinical Trials</span>
+              <span class="cert-tag">Patient Safety</span>
+              <span class="cert-tag">Regulatory Affairs</span>
+            </div>
+            <div class="cert-divider"></div>
+            <div class="cert-footer">
+              <span class="cert-type">International Certification</span>
+              <span class="cert-credential-link">
+                ICH-GCP E6 ✓
+              </span>
+            </div>
+          </div>
+
+        </div><!-- /cert-grid -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS SECTION
+    ============================================================ -->
+    <section id="skills">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-eyebrow reveal">Expertise</div>
+          <h2 class="section-title reveal d-1">Clinical <span>Skills</span></h2>
+          <p class="section-subtitle reveal d-2">A comprehensive skill set spanning clinical medicine, research, education, and healthcare leadership.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="skills-layout">
+
+          <!-- Left: Progress bars -->
+          <div class="skills-bars" id="skillsBars">
+
+            <!-- Group 1: Clinical -->
+            <div class="skill-group reveal">
+              <div class="skill-group-label">Clinical Skills</div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🩺</span> Medicine</div>
+                  <div class="skill-pct" id="sp-medicine">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-cyan" data-pct="99"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">💊</span> Internal Medicine</div>
+                  <div class="skill-pct" id="sp-internal">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-cyan" data-pct="99"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🏥</span> Healthcare</div>
+                  <div class="skill-pct" id="sp-healthcare">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-blue" data-pct="87"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🚨</span> Emergency Medicine</div>
+                  <div class="skill-pct" id="sp-emergency">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-teal" data-pct="60"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🛡️</span> Patient Safety</div>
+                  <div class="skill-pct" id="sp-safety">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-teal" data-pct="55"></div>
+                </div>
+              </div>
+
+            </div><!-- /group 1 -->
+
+            <!-- Group 2: Research & Education -->
+            <div class="skill-group reveal d-1">
+              <div class="skill-group-label">Research &amp; Education</div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">📚</span> Medical Education</div>
+                  <div class="skill-pct" id="sp-mededu">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-violet" data-pct="80"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🔬</span> Clinical Research</div>
+                  <div class="skill-pct" id="sp-research">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-violet" data-pct="67"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🧪</span> Clinical Trials</div>
+                  <div class="skill-pct" id="sp-trials">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-indigo" data-pct="47"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">📰</span> Medical Research</div>
+                  <div class="skill-pct" id="sp-medresearch">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-indigo" data-pct="40"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🌍</span> Public Health</div>
+                  <div class="skill-pct" id="sp-pubhealth">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-green" data-pct="40"></div>
+                </div>
+              </div>
+
+            </div><!-- /group 2 -->
+
+            <!-- Group 3: Management -->
+            <div class="skill-group reveal d-2">
+              <div class="skill-group-label">Management &amp; Communication</div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🏗️</span> Healthcare Management</div>
+                  <div class="skill-pct" id="sp-hcmgmt">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-blue" data-pct="50"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">❤️</span> Health Education</div>
+                  <div class="skill-pct" id="sp-healthedu">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-green" data-pct="45"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-row">
+                  <div class="skill-name"><span class="skill-icon">🎤</span> Presentation Skills</div>
+                  <div class="skill-pct" id="sp-present">0%</div>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill sf-teal" data-pct="38"></div>
+                </div>
+              </div>
+
+            </div><!-- /group 3 -->
+
+          </div><!-- /skills-bars -->
+
+          <!-- Right: Visual card -->
+          <div class="skills-visual-card glass-card reveal-right d-2">
+            <div class="svc-title">Skill Overview</div>
+            <div class="svc-sub">LinkedIn-verified endorsements & proficiency</div>
+
+            <!-- Bubble cloud -->
+            <div class="skill-bubbles">
+              <div class="skill-bubble"><div class="sb-dot" style="background:#00c8ff;"></div><span>Internal Medicine</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#4d9fff;"></div><span>Medicine</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#00c8ff;"></div><span>Healthcare</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#9966ff;"></div><span>Medical Education</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#9966ff;"></div><span>Clinical Research</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#00c880;"></div><span>Public Health</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#6655ff;"></div><span>Clinical Trials</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#4d9fff;"></div><span>Healthcare Mgmt.</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#00d4ff;"></div><span>Emergency Medicine</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#00c880;"></div><span>Health Education</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#6b8fa8;"></div><span>Patient Safety</span></div>
+              <div class="skill-bubble"><div class="sb-dot" style="background:#6655ff;"></div><span>Medical Research</span></div>
+            </div>
+
+            <!-- Endorsement counts -->
+            <div class="endorsement-note">
+              <div class="en-label">Top Endorsements</div>
+              <div class="en-items">
+                <div class="en-item">
+                  <span class="en-name">Medicine</span>
+                  <span class="en-count">15</span>
+                </div>
+                <div class="en-item">
+                  <span class="en-name">Healthcare</span>
+                  <span class="en-count">13</span>
+                </div>
+                <div class="en-item">
+                  <span class="en-name">Clinical Research</span>
+                  <span class="en-count">10</span>
+                </div>
+                <div class="en-item">
+                  <span class="en-name">Medical Education</span>
+                  <span class="en-count">9</span>
+                </div>
+                <div class="en-item">
+                  <span class="en-name">Internal Medicine</span>
+                  <span class="en-count">8</span>
+                </div>
+                <div class="en-item">
+                  <span class="en-name">Hospitals</span>
+                  <span class="en-count">7</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /skills-visual-card -->
+
+        </div><!-- /skills-layout -->
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+    ============================================================ -->
+    <section id="contact">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-eyebrow reveal">Get In Touch</div>
+          <h2 class="section-title reveal d-1">Book a <span>Consultation</span></h2>
+          <p class="section-subtitle reveal d-2">Reach out to schedule an appointment or professional inquiry. Dr. Kanak is available at multiple locations across Dhaka.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-inner">
+
+          <!-- Left: info -->
+          <div class="contact-info reveal-left">
+
+            <p class="contact-tagline">
+              With over 18 years of clinical excellence, Dr. Rashedul Hassan Kanak is available for specialist consultations at Medinova Medical Services, Malibag Branch. For academic inquiries, reach out via Green Life Medical College.
+            </p>
+
+            <div class="contact-cards">
+
+              <a class="cinfo-card" href="mailto:drkanakmed@gmail.com">
+                <div class="cinfo-icon">📧</div>
+                <div class="cinfo-text">
+                  <div class="cinfo-label">Email Address</div>
+                  <div class="cinfo-value">drkanakmed@gmail.com</div>
+                </div>
+                <div class="cinfo-arrow">→</div>
+              </a>
+
+              <a class="cinfo-card" href="tel:+8801700000000">
+                <div class="cinfo-icon">📞</div>
+                <div class="cinfo-text">
+                  <div class="cinfo-label">Phone / Appointment</div>
+                  <div class="cinfo-value">+880 1700-000000</div>
+                </div>
+                <div class="cinfo-arrow">→</div>
+              </a>
+
+            </div>
+
+            <div class="contact-location">
+              <div class="cloc-icon">📍</div>
+              <div>
+                <div class="cloc-label">Clinic Address</div>
+                <div class="cloc-value">Medinova Medical Services<br/>Malibag Branch, Hosaf Tower</div>
+                <div class="cloc-sub">Malibag Moore, Dhaka, Bangladesh</div>
+              </div>
+            </div>
+
+            <!-- Secondary location -->
+            <div class="contact-location" style="margin-top:14px;">
+              <div class="cloc-icon">🏫</div>
+              <div>
+                <div class="cloc-label">Academic Address</div>
+                <div class="cloc-value">Green Life Medical College</div>
+                <div class="cloc-sub">Dhaka, Bangladesh &nbsp;·&nbsp; Associate Professor of Medicine</div>
+              </div>
+            </div>
+
+          </div><!-- /contact-info -->
+
+          <!-- Right: Form -->
+          <div class="contact-form-wrap reveal-right d-1">
+            <div class="cf-title">Send a Message</div>
+            <div class="cf-sub">We'll get back to you within 24 hours.</div>
+
+            <div id="contactForm">
+              <div class="cf-row">
+                <div class="cf-field">
+                  <label class="cf-label" for="cf-name">Full Name</label>
+                  <input class="cf-input" id="cf-name" type="text" placeholder="Your full name" />
+                </div>
+                <div class="cf-field">
+                  <label class="cf-label" for="cf-email">Email</label>
+                  <input class="cf-input" id="cf-email" type="email" placeholder="you@example.com" />
+                </div>
+              </div>
+
+              <div class="cf-field">
+                <label class="cf-label" for="cf-phone">Phone (optional)</label>
+                <input class="cf-input" id="cf-phone" type="tel" placeholder="+880 XXXX-XXXXXX" />
+              </div>
+
+              <div class="cf-field">
+                <label class="cf-label" for="cf-subject">Subject</label>
+                <input class="cf-input" id="cf-subject" type="text" placeholder="e.g. Appointment Request, Research Inquiry..." />
+              </div>
+
+              <div class="cf-field">
+                <label class="cf-label" for="cf-message">Message</label>
+                <textarea class="cf-textarea" id="cf-message" placeholder="Please describe your query or reason for consultation..."></textarea>
+              </div>
+
+              <button class="cf-submit" id="cfSubmitBtn" type="button" onclick="handleFormSubmit()">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+                Send Message
+              </button>
+            </div>
+
+            <!-- Success state -->
+            <div class="cf-success" id="cfSuccess">
+              <div class="cf-success-icon">✅</div>
+              <div class="cf-success-text">Message Sent!</div>
+              <div class="cf-success-sub">Thank you for reaching out. Dr. Kanak's team will respond within 24 hours.</div>
+            </div>
+
+          </div><!-- /contact-form-wrap -->
+
+        </div><!-- /contact-inner -->
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer id="footer">
+      <div class="container">
+
+        <div class="footer-inner">
+
+          <!-- Brand column -->
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <div class="footer-logo-badge">RK</div>
+              <div>
+                <div class="footer-logo-name">Dr. Rashedul Hassan Kanak</div>
+                <div class="footer-logo-title">FCPS · Internal Medicine</div>
+              </div>
+            </div>
+            <p class="footer-tagline">
+              Dedicated to evidence-based clinical excellence, compassionate patient care, and shaping the future of medical education in Bangladesh.
+            </p>
+            <div class="footer-socials">
+              <a class="social-btn" href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+              <a class="social-btn" href="#" title="Facebook" aria-label="Facebook">f</a>
+              <a class="social-btn" href="#" title="ResearchGate" aria-label="ResearchGate">RG</a>
+              <a class="social-btn" href="mailto:drkanakmed@gmail.com" title="Email" aria-label="Email">✉</a>
+            </div>
+          </div>
+
+          <!-- Quick links -->
+          <div>
+            <div class="footer-col-title">Quick Links</div>
+            <ul class="footer-links">
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#education">Education</a></li>
+              <li><a href="#certifications">Certifications</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Specialties -->
+          <div>
+            <div class="footer-col-title">Specialties</div>
+            <ul class="footer-links">
+              <li><a href="#skills">Internal Medicine</a></li>
+              <li><a href="#skills">Clinical Research</a></li>
+              <li><a href="#skills">Medical Education</a></li>
+              <li><a href="#skills">Emergency Medicine</a></li>
+              <li><a href="#skills">Healthcare Management</a></li>
+              <li><a href="#certifications">GCP · icddr,b</a></li>
+            </ul>
+          </div>
+
+        </div><!-- /footer-inner -->
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            © 2025 <span>Dr. Rashedul Hassan Kanak</span>. All rights reserved.
+          </div>
+          <div class="footer-credit">
+            Crafted with <span>♥</span> in Dhaka, Bangladesh
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  </div><!-- /wrapper -->
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        // Trigger hero reveals after loader fades
+        triggerInitialReveal();
+      }, 1500);
+    });
+
+    /* ============================================================
+       NAVBAR — scroll behavior + active links
+    ============================================================ */
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      updateActiveNav();
+    });
+
+    function updateActiveNav() {
+      const sections = document.querySelectorAll('section[id]');
+      const links    = document.querySelectorAll('.nav-links a, .nav-mobile a');
+      let current    = '';
+
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      links.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${current}`) {
+          a.classList.add('active');
+        }
+      });
+    }
+
+    /* ============================================================
+       HAMBURGER — mobile menu
+    ============================================================ */
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('navMobile');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMobile.classList.remove('open');
+      });
+    });
+
+    /* ============================================================
+       SCROLL REVEAL — Intersection Observer
+    ============================================================ */
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Unobserve after triggering for performance
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    function triggerInitialReveal() {
+      revealEls.forEach(el => revealObserver.observe(el));
+    }
+
+    /* ============================================================
+       TYPED TITLE EFFECT
+    ============================================================ */
+    const titles = [
+      'Associate Professor of Medicine',
+      'Internal Medicine Specialist',
+      'FCPS · Clinical Expert',
+      'Medical Educator & Researcher',
+    ];
+
+    let tIdx = 0, cIdx = 0, deleting = false;
+    const typedEl = document.getElementById('typedTitle');
+
+    function typeLoop() {
+      if (!typedEl) return;
+      const current = titles[tIdx];
+
+      if (!deleting) {
+        typedEl.textContent = current.slice(0, cIdx + 1);
+        cIdx++;
+        if (cIdx === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 2200); // pause at full word
+          return;
+        }
+      } else {
+        typedEl.textContent = current.slice(0, cIdx - 1);
+        cIdx--;
+        if (cIdx === 0) {
+          deleting = false;
+          tIdx = (tIdx + 1) % titles.length;
+        }
+      }
+      setTimeout(typeLoop, deleting ? 40 : 65);
+    }
+
+    setTimeout(typeLoop, 2000); // start after loader
+
+    /* ============================================================
+       COUNTER ANIMATION — hero & about stats
+    ============================================================ */
+    function animateCounter(el, target, duration = 1800, suffix = '') {
+      let start = null;
+      const startVal = 0;
+
+      function step(ts) {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const val = Math.round(startVal + (target - startVal) * eased);
+        el.textContent = val.toLocaleString() + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString() + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+
+    // Hero quick stats
+    const heroCounters = [
+      { id: 'hs1', target: 18 },
+      { id: 'hs2', target: 2500 },
+      { id: 'hs3', target: 12 },
+      { id: 'hs4', target: 4 },
+    ];
+
+    let heroCountersDone = false;
+
+    function startHeroCounters() {
+      if (heroCountersDone) return;
+      heroCountersDone = true;
+      heroCounters.forEach((c, i) => {
+        setTimeout(() => {
+          const el = document.getElementById(c.id);
+          if (el) animateCounter(el, c.target);
+        }, i * 120);
+      });
+    }
+
+    // About stat cards
+    let aboutCountersDone = false;
+
+    function startAboutCounters() {
+      if (aboutCountersDone) return;
+      aboutCountersDone = true;
+      document.querySelectorAll('.stat-number[data-target]').forEach((el, i) => {
+        setTimeout(() => {
+          const target = parseInt(el.dataset.target, 10);
+          animateCounter(el, target);
+        }, i * 150);
+      });
+    }
+
+    // Trigger counters on scroll
+    const heroSection  = document.getElementById('hero');
+    const aboutSection = document.getElementById('about');
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target === heroSection)  startHeroCounters();
+          if (entry.target === aboutSection) startAboutCounters();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (heroSection)  counterObserver.observe(heroSection);
+    if (aboutSection) counterObserver.observe(aboutSection);
+
+    /* ============================================================
+       PART 2 JS — SKILLS BAR ANIMATION
+    ============================================================ */
+
+    // Map bar IDs to percentage display elements
+    const skillMap = [
+      { bar: 0,  pctId: 'sp-medicine'    },
+      { bar: 1,  pctId: 'sp-internal'    },
+      { bar: 2,  pctId: 'sp-healthcare'  },
+      { bar: 3,  pctId: 'sp-emergency'   },
+      { bar: 4,  pctId: 'sp-safety'      },
+      { bar: 5,  pctId: 'sp-mededu'      },
+      { bar: 6,  pctId: 'sp-research'    },
+      { bar: 7,  pctId: 'sp-trials'      },
+      { bar: 8,  pctId: 'sp-medresearch' },
+      { bar: 9,  pctId: 'sp-pubhealth'   },
+      { bar: 10, pctId: 'sp-hcmgmt'      },
+      { bar: 11, pctId: 'sp-healthedu'   },
+      { bar: 12, pctId: 'sp-present'     },
+    ];
+
+    let skillsAnimated = false;
+
+    function animateSkillBars() {
+      if (skillsAnimated) return;
+      skillsAnimated = true;
+
+      const fills = document.querySelectorAll('.skill-bar-fill');
+
+      fills.forEach((fill, i) => {
+        const target = parseInt(fill.dataset.pct, 10);
+        const pctEl  = document.getElementById(skillMap[i]?.pctId);
+        const delay  = i * 80;
+
+        setTimeout(() => {
+          fill.style.width = target + '%';
+
+          // Animate the percentage label too
+          if (pctEl) {
+            let current = 0;
+            const duration = 1200;
+            const start = performance.now();
+
+            function tick(now) {
+              const elapsed  = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased    = 1 - Math.pow(1 - progress, 3);
+              current        = Math.round(target * eased);
+              pctEl.textContent = current + '%';
+              if (progress < 1) requestAnimationFrame(tick);
+              else pctEl.textContent = target + '%';
+            }
+            requestAnimationFrame(tick);
+          }
+        }, delay);
+      });
+    }
+
+    // Observe the skills section
+    const skillsSection = document.getElementById('skills');
+    const skillsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) animateSkillBars();
+      });
+    }, { threshold: 0.15 });
+
+    if (skillsSection) skillsObserver.observe(skillsSection);
+
+    /* ============================================================
+       PART 3 JS — CONTACT FORM
+    ============================================================ */
+    function handleFormSubmit() {
+      const name    = document.getElementById('cf-name').value.trim();
+      const email   = document.getElementById('cf-email').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+
+      if (!name || !email || !message) {
+        // Shake empty fields
+        ['cf-name','cf-email','cf-message'].forEach(id => {
+          const el = document.getElementById(id);
+          if (!el.value.trim()) {
+            el.style.borderColor = 'rgba(255,80,80,0.6)';
+            el.style.boxShadow   = '0 0 0 3px rgba(255,80,80,0.1)';
+            setTimeout(() => {
+              el.style.borderColor = '';
+              el.style.boxShadow   = '';
+            }, 1800);
+          }
+        });
+        return;
+      }
+
+      const btn = document.getElementById('cfSubmitBtn');
+      btn.textContent = 'Sending…';
+      btn.style.opacity = '0.75';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('cfSuccess').classList.add('show');
+      }, 1200);
+    }
+
+    /* ============================================================
+       PART 3 JS — SCROLL TO TOP
+    ============================================================ */
+    const scrollTopBtn = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+  </script>
+
+  <!-- END PART 3 — COMPLETE FILE -->
+
+</body>
+</html>
